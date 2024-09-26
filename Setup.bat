@@ -9,6 +9,11 @@ for %%P in (%*) do if /I "%%P" == "--force" goto no_prompt_argument
 set PROMPT_ARGUMENT=--prompt
 :no_prompt_argument
 
+
+echo %PROMPT_ARGUMENT%
+echo %*
+
+
 rem Sync the dependencies...
 .\Engine\Binaries\DotNET\GitDependencies\win-x64\GitDependencies.exe %PROMPT_ARGUMENT% %*
 if %ERRORLEVEL% NEQ 0 goto error
