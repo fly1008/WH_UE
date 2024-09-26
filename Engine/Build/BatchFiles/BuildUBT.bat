@@ -105,9 +105,10 @@ call "%~dp0GetDotnetPath.bat"
 if errorlevel 1 goto Error_NoDotnetSDK
 
 echo Building UnrealBuildTool...
-dotnet build Programs\UnrealBuildTool\UnrealBuildTool.csproj -c Development -v %MSBUILD_LOGLEVEL%
+echo %MSBUILD_LOGLEVEL%
+dotnet build Programs\UnrealBuildTool\UnrealBuildTool.csproj -c debug -v %MSBUILD_LOGLEVEL%
 if errorlevel 1 goto Error_UBTCompileFailed
-
+echo Building UnrealBuildTool finished
 rem record input files - regardless of how we got here, these are now our point of reference
 copy /y ..\Intermediate\Build\UnrealBuildToolFiles.txt ..\Intermediate\Build\UnrealBuildToolPrevFiles.txt >nul
 

@@ -34,7 +34,14 @@ if errorlevel 1 goto Error_UBTCompileFailed
 
 rem ## Run UnrealBuildTool to generate Visual Studio solution and project files
 rem ## NOTE: We also pass along any arguments to the GenerateProjectFiles.bat here
+echo 1 
+echo -ProjectFiles 
+echo %*
+echo 2 
+echo UnrealBuildTool Begin
 dotnet ..\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll -ProjectFiles %*
+echo UnrealBuildTool End
+
 if errorlevel 1 goto Error_ProjectGenerationFailed
 
 rem ## Success!

@@ -414,6 +414,14 @@ namespace UnrealBuildTool
 		/// <returns>Zero on success, non-zero on error</returns>
 		private static int Main(string[] ArgumentsArray)
 		{
+            int pid = Process.GetCurrentProcess().Id; 
+			Console.WriteLine("UnrealBuildTool: start ..., pid:"+ pid);
+			bool b = true;
+			//while (b)
+			//{
+			//	int a = 0;
+			//}
+
 			FileReference? RunFile = null;
 			DirectoryReference? TempDirectory = null;
 			SingleInstanceMutex? Mutex = null;
@@ -658,8 +666,9 @@ namespace UnrealBuildTool
 				try
 				{
 					Result = Mode.ExecuteAsync(Arguments, Logger).GetAwaiter().GetResult();
-				}
-				catch (AggregateException AggEx) when (AggEx.InnerExceptions.Count == 1 && AggEx.InnerExceptions.FirstOrDefault() != null)
+                    Console.WriteLine("UnrealBuildTool: End ..., pid:" + pid);
+                }
+                catch (AggregateException AggEx) when (AggEx.InnerExceptions.Count == 1 && AggEx.InnerExceptions.FirstOrDefault() != null)
 				{
 					throw AggEx.InnerExceptions.First();
 				}
